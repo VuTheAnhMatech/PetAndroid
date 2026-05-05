@@ -4,15 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -101,66 +97,91 @@ fun MainTabScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            color = Color(0xFFF7F5F1)
+            color = selectedTab.backgroundColor
         ) {
-            MainTabPlaceholder(tab = selectedTab)
+            when (selectedTab) {
+                MainTab.Translate -> TranslateScreen()
+                MainTab.Training -> TrainingScreen()
+                MainTab.Sound -> SoundScreen()
+                MainTab.Game -> GameScreen()
+                MainTab.Setting -> SettingScreen()
+            }
         }
     }
 }
 
 @Composable
-private fun MainTabPlaceholder(tab: MainTab) {
+private fun TranslateScreen() {
+    MainTabContent(
+        title = "Translate",
+        description = "Translate screen placeholder",
+        backgroundColor = MainTab.Translate.backgroundColor
+    )
+}
+
+@Composable
+private fun TrainingScreen() {
+    MainTabContent(
+        title = "Training",
+        description = "Training screen placeholder",
+        backgroundColor = MainTab.Training.backgroundColor
+    )
+}
+
+@Composable
+private fun SoundScreen() {
+    MainTabContent(
+        title = "Sound",
+        description = "Sound screen placeholder",
+        backgroundColor = MainTab.Sound.backgroundColor
+    )
+}
+
+@Composable
+private fun GameScreen() {
+    MainTabContent(
+        title = "Game",
+        description = "Game screen placeholder",
+        backgroundColor = MainTab.Game.backgroundColor
+    )
+}
+
+@Composable
+private fun SettingScreen() {
+    MainTabContent(
+        title = "Setting",
+        description = "Setting screen placeholder",
+        backgroundColor = MainTab.Setting.backgroundColor
+    )
+}
+
+@Composable
+private fun MainTabContent(
+    title: String,
+    description: String,
+    backgroundColor: Color
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(backgroundColor)
             .padding(horizontal = 24.dp, vertical = 18.dp),
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = tab.title,
-            fontSize = 24.sp,
+            text = title,
+            fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF171515)
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
-
         Text(
-            text = tab.placeholder,
-            fontSize = 14.sp,
-            color = Color(0xFF6E6B67)
+            text = description,
+            textAlign = TextAlign.Center,
+            fontSize = 16.sp,
+            color = Color(0xFF4F4A45)
         )
-
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    repeat(3) {
-                        Box(
-                            modifier = Modifier
-                                .size(18.dp)
-                                .clip(CircleShape)
-                                .background(Color(0xFFE0DDD7))
-                        )
-                    }
-                }
-
-                Text(
-                    text = "${tab.title} screen placeholder",
-                    textAlign = TextAlign.Center,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color(0xFF3B3A38)
-                )
-            }
-        }
     }
 }
 
@@ -177,37 +198,43 @@ enum class MainTab(
     val label: String,
     val title: String,
     val placeholder: String,
-    val image: String
+    val image: String,
+    val backgroundColor: Color
 ) {
     Translate(
         label = "Translate",
         title = "Pet Translate",
         placeholder = "Temporary placeholder for the translate flow.",
-        image = "img_translate"
+        image = "img_translate",
+        backgroundColor = Color(0xFFF7F5F1)
     ),
     Training(
         label = "Training",
         title = "Training",
         placeholder = "Temporary placeholder for courses and routines.",
-        image = "img_tranining"
+        image = "img_tranining",
+        backgroundColor = Color(0xFFEFF6FF)
     ),
     Sound(
         label = "Sound",
         title = "Pet Sounds",
         placeholder = "Temporary placeholder for the sound board.",
-        image = "img_sound"
+        image = "img_sound",
+        backgroundColor = Color(0xFFFFF4E8)
     ),
     Game(
         label = "Game",
         title = "Game",
         placeholder = "Temporary placeholder for games and activities.",
-        image = "img_game"
+        image = "img_game",
+        backgroundColor = Color(0xFFEFFAF1)
     ),
     Setting(
         label = "Setting",
         title = "Setting",
         placeholder = "Temporary placeholder for app settings.",
-        image = "img_setting"
+        image = "img_setting",
+        backgroundColor = Color(0xFFF4F1FF)
     )
 }
 
