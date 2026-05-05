@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PetTranslate</string>
+    <string name="home_title">PetTranslate</string>
+    <string name="home_subtitle">Android base project ready for feature implementation.</string>
+    <string name="home_section_now">Build next</string>
+    <string name="home_section_notes">Architecture notes</string>
+</resources>

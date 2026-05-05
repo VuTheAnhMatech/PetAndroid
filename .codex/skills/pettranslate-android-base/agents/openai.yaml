@@ -1,0 +1,5 @@
+interface:
+  display_name: "PetTranslate Android"
+  short_description: "Follow this repo's Compose and Clean Architecture conventions"
+  default_prompt: "Use $pettranslate-android-base to implement or refactor this Android feature with the repo's current Compose and Clean Architecture conventions."
+
